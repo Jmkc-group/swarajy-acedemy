@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Phone, Quote } from 'lucide-react'
+import { ArrowRight, MapPin, Phone, Quote } from 'lucide-react'
 import { motion } from 'motion/react'
 import logoEmblem from '@/assets/logo-emblem.webp'
 import { Button } from '@/components/ui/button'
@@ -12,8 +12,24 @@ import { PHONE_NUMBERS, SLOGANS } from '@/data/site'
 import { telHref } from '@/utils/contact'
 import { useLanguage } from '@/hooks/useLanguage'
 
+const HERO_BRANCHES = [
+  {
+    id: 'pcmc',
+    name: {
+      en: 'Pimpri-Chinchwad (PCMC) Branch',
+      mr: 'पिंपरी-चिंचवड (PCMC) शाखा',
+      hi: 'पिंपरी-चिंचवड (PCMC) शाखा',
+    },
+  },
+  {
+    id: 'baramati',
+    name: { en: 'Supe (Baramati) Branch', mr: 'सुपे (बारामती) शाखा', hi: 'सुपे (बारामती) शाखा' },
+  },
+  { id: 'mumbai', name: { en: 'Mumbai Branch', mr: 'मुंबई शाखा', hi: 'मुंबई शाखा' } },
+]
+
 export function HeroSection() {
-  const { t, lang } = useLanguage()
+  const { t, lang, pick } = useLanguage()
   const [mainSlogan, ...otherSlogans] = SLOGANS
 
   return (
@@ -22,7 +38,7 @@ export function HeroSection() {
       <Spotlight className="-top-40 left-0 md:-top-24 md:left-56" fill="#d4a537" />
       <div aria-hidden="true" className="absolute -right-32 bottom-0 size-[28rem] rounded-full bg-leaf/25 blur-3xl" />
 
-      <div className="container-page relative z-10 grid items-center gap-10 py-14 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:py-24">
+      <div className="container-page relative z-10 grid items-center gap-10 pt-6 pb-14 sm:pb-20 lg:grid-cols-[1.15fr_0.85fr] lg:pb-24">
         <div className="text-center lg:text-left">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <Badge className="mb-5 border border-gold/40 bg-white/5 px-3 py-1 text-xs font-semibold whitespace-normal text-gold sm:text-sm">
@@ -54,22 +70,37 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start"
+            className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start"
           >
             <MovingBorder>
               <Button asChild variant="cta" size="xl" className="rounded-[10px]">
-                <Link to="/contact">
-                  {t('common.admissionEnquiry')}
-                  <ArrowRight aria-hidden="true" />
-                </Link>
+                <a href={telHref(PHONE_NUMBERS[0])}>
+                  <Phone aria-hidden="true" />
+                  {t('common.callNow')}
+                </a>
               </Button>
             </MovingBorder>
-            <Button asChild variant="outline-light" size="xl">
-              <a href={telHref(PHONE_NUMBERS[0])}>
-                <Phone aria-hidden="true" />
-                {t('common.callNow')}
-              </a>
-            </Button>
+
+            <nav aria-label={t('nav.branches')} className="flex flex-wrap items-center justify-center gap-2">
+              <Link
+                to="/branches"
+                className="inline-flex items-center gap-1.5 text-sm font-bold tracking-wide text-gold uppercase hover:underline"
+              >
+                <MapPin aria-hidden="true" className="size-4" />
+                {t('nav.branches')}
+                <ArrowRight aria-hidden="true" className="size-4" />
+              </Link>
+              <ul className="flex flex-wrap justify-center gap-2">
+                {HERO_BRANCHES.map((branch) => (
+                  <li
+                    key={branch.id}
+                    className="rounded-full border border-gold/60 bg-gold/15 px-3.5 py-1.5 text-sm font-semibold text-white shadow-[0_0_12px_rgba(212,165,55,0.25)]"
+                  >
+                    {pick(branch.name)}
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </motion.div>
 
           {/* Official slogan — always shown in its original language */}

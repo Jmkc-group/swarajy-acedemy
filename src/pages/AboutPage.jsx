@@ -7,6 +7,7 @@ import { CTASection } from '@/components/common/CTASection'
 import { Reveal } from '@/components/aceternity/Reveal'
 import { SpotlightCard } from '@/components/aceternity/SpotlightCard'
 import { GuaranteeBanner } from '@/components/home/GuaranteeBanner'
+import { FounderSection } from '@/components/about/FounderSection'
 import logoEmblem from '@/assets/logo-emblem.webp'
 import { useLanguage } from '@/hooks/useLanguage'
 
@@ -46,6 +47,8 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
+
+      <FounderSection />
 
       {/* Mission & vision */}
       <section className="bg-surface pb-16 sm:pb-20" aria-label={`${t('about.missionTitle')} / ${t('about.visionTitle')}`}>

@@ -55,18 +55,17 @@ const en = {
     titleHighlight: 'future officers',
     titleTail: 'of Maharashtra',
     description:
-      'Complete preparation for Police, Army, Navy, Air Force, Saralseva Bharti and MPSC — with daily study, physical training, weekly tests and a residential campus.',
+      'Complete preparation for Police, Indian Army, Indian Navy, Indian Air Force, Saralseva Bharti and MPSC — with daily study, physical training, weekly tests and a residential campus.',
     sloganLabel: 'Our motto',
   },
 
   highlights: {
-    eyebrow: 'Academy at a glance',
-    title: 'Built for serious preparation',
-    subtitle: 'Information as provided by the academy.',
-    campus: { value: '14,000', unit: 'sq. ft.', label: 'Campus', desc: 'Spacious campus for study, training and residence.' },
-    library: { value: '24', unit: 'hours', label: 'Library', desc: 'Study any time — the library never closes.' },
+    branches: { unit: 'branches', label: 'Our branches', desc: 'Pimpri-Chinchwad (PCMC), Supe (Baramati) and Mumbai.' },
+    campus: { unit: 'sq. ft.', label: 'Campus', desc: 'Spacious campus for study, training and residence.' },
+    library: { unit: 'hours', label: 'Library', desc: 'Study any time — the library never closes.' },
     study: { value: '7–8', unit: 'hours', label: 'Daily study', desc: 'Guided academic study every single day.' },
-    tuesday: { value: 'Every', unit: 'Tuesday', label: 'Weekly test', desc: 'Subject-wise tests to track progress.' },
+    tests: { value: 'Weekly', unit: '& monthly', label: 'Test series', desc: 'Weekly and monthly test series to track progress.' },
+    hostel: { value: 'Separate', unit: 'hostels', label: 'Boys & girls hostels', desc: 'Separate hostel facilities for boys and girls.' },
   },
 
   guarantee: {
@@ -172,6 +171,13 @@ const en = {
     title: 'About the academy',
     subtitle: 'A pre-recruitment training academy and Sainik School preparing students for a life of service.',
     introTitle: 'Who we are',
+    founder: {
+      eyebrow: 'Meet our founder',
+      title: 'A message from the founder',
+      role: 'Founder & Director',
+      photoAlt: 'Founder of Swarajya Career Academy',
+      follow: 'Follow us on social media',
+    },
     intro: [
       'Swarajya Career Academy & Sainik School prepares students for Police, Army, Navy, Air Force, Saralseva Bharti and MPSC examinations. Academic study, physical training and a disciplined routine are combined into one programme.',
       'With branches in Pimpri-Chinchwad and Supe (Baramati), the academy offers both residential and non-residential options, a 14,000 sq. ft. campus and a library that stays open 24 hours.',
@@ -314,6 +320,15 @@ const en = {
     contactTitle: 'Academy contact numbers',
     contactNote: 'These numbers are common for the academy. Call any number for admissions and branch information.',
     mapNote: 'Maps open a search for the address — confirm the exact location on call before visiting.',
+  },
+
+  quickEnquiry: {
+    eyebrow: 'Quick enquiry',
+    title: 'Start your preparation today',
+    subtitle: 'Select your branch and share a few details.',
+    branch: 'Select branch',
+    submit: 'Send enquiry',
+    later: 'Maybe later',
   },
 
   contact: {

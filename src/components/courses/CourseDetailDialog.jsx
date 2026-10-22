@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { ArrowRight, CheckCircle2, ListChecks, NotebookPen, Route, UserCheck } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -6,6 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Modal } from '@/components/common/Modal'
 import { Notice } from '@/components/common/Notice'
 import { IconBadge } from '@/components/common/IconBadge'
+import { openQuickEnquiry } from '@/components/home/QuickEnquiryPopup'
 import { getIcon } from '@/utils/icons'
 import { useLanguage } from '@/hooks/useLanguage'
 
@@ -109,11 +109,18 @@ export function CourseDetailDialog({ course, open, onOpenChange }) {
       </DetailBlock>
 
       <div className="mt-6 border-t pt-5">
-        <Button asChild variant="cta" size="xl" className="w-full">
-          <Link to={`/contact?course=${course.id}`} onClick={() => onOpenChange(false)}>
-            {t('common.admissionEnquiry')}
-            <ArrowRight aria-hidden="true" />
-          </Link>
+        <Button
+          type="button"
+          variant="cta"
+          size="xl"
+          className="w-full"
+          onClick={() => {
+            onOpenChange(false)
+            openQuickEnquiry(course.id)
+          }}
+        >
+          {t('common.admissionEnquiry')}
+          <ArrowRight aria-hidden="true" />
         </Button>
       </div>
     </Modal>

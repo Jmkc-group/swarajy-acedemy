@@ -4,6 +4,7 @@ import { Loader2 } from 'lucide-react'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { ScrollToTop } from './ScrollToTop'
+import { QuickEnquiryPopup } from '@/components/home/QuickEnquiryPopup'
 import { useLanguage } from '@/hooks/useLanguage'
 
 function PageLoader() {
@@ -34,6 +35,7 @@ export function Layout() {
       </main>
       <Footer />
       <ScrollToTop />
+      <QuickEnquiryPopup />
     </div>
   )
 }

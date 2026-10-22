@@ -40,6 +40,14 @@ export const SOCIAL_LINKS = [
   },
 ]
 
+// Founder shown on the About page. Put the photo at public/images/founder.jpg
+// (a placeholder shows until it exists) and fill in the name when confirmed.
+export const FOUNDER = {
+  photo: '/images/founder.jpg',
+  name: null, // e.g. { en: 'Full Name', mr: 'पूर्ण नाव', hi: 'पूरा नाम' }
+  quoteSloganId: 'students',
+}
+
 // Official slogans are always shown in their original language.
 // `translation` is shown underneath when the visitor reads a different language.
 export const SLOGANS = [
