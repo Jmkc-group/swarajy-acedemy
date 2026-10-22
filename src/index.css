@@ -1,0 +1,221 @@
+﻿@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------------------------------------------
+   Brand palette — taken from the academy logo and the uniforms of
+   Police (khaki), Army (olive / military green) and Navy (navy blue).
+------------------------------------------------------------------- */
+@theme {
+  --font-sans: "Mukta", "Noto Sans Devanagari", "Nirmala UI", system-ui, sans-serif;
+  --font-heading: "Poppins", "Mukta", "Noto Sans Devanagari", "Nirmala UI", system-ui, sans-serif;
+
+  --color-navy-950: #0b1f4b;
+  --color-navy-900: #102a63;
+  --color-navy: #1e3a8a;
+  --color-forest: #14532d;
+  --color-leaf: #1f6b35;
+  --color-army: #2d5a27;
+  --color-olive: #3f5a2a;
+  --color-khaki: #b8835a;
+  --color-khaki-deep: #7a5530;
+  --color-sand: #d6b98c;
+  --color-sand-50: #faf6ee;
+  --color-gold: #d4a537;
+  --color-gold-light: #e7c35f;
+  --color-gold-deep: #8a6516;
+  --color-saffron: #ea580c;
+  --color-saffron-deep: #c2410c;
+  --color-airforce: #3b82f6;
+  --color-ink: #0f172a;
+  --color-muted-ink: #64748b;
+  --color-surface: #f8fafc;
+
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+  --animate-border-spin: border-spin 4s linear infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+
+  @keyframes spotlight {
+    0% {
+      opacity: 0;
+      transform: translate(-72%, -62%) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -40%) scale(1);
+    }
+  }
+  @keyframes border-spin {
+    to {
+      --border-angle: 360deg;
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: 0% 50%;
+    }
+    to {
+      background-position: 200% 50%;
+    }
+  }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* shadcn/ui tokens mapped onto the academy palette */
+:root {
+  --radius: 0.75rem;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #14532d;
+  --primary-foreground: #ffffff;
+  --secondary: #faf6ee;
+  --secondary-foreground: #14532d;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #faf6ee;
+  --accent-foreground: #14532d;
+  --destructive: #dc2626;
+  --border: #e2e8f0;
+  --input: #cbd5e1;
+  --ring: #1f6b35;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+  /* Devanagari needs a little more vertical room for matras */
+  html[lang="mr"] body,
+  html[lang="hi"] body {
+    line-height: 1.8;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading text-ink;
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+  html[lang="mr"] :is(h1, h2, h3, h4),
+  html[lang="hi"] :is(h1, h2, h3, h4) {
+    line-height: 1.4;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .section-y {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+  .text-gradient-gold {
+    background: linear-gradient(100deg, #e7c35f 0%, #d4a537 35%, #f59e0b 65%, #ea580c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-forest {
+    background: linear-gradient(100deg, #14532d 0%, #1f6b35 45%, #1e3a8a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-tricolor {
+    background: linear-gradient(90deg, #ea580c 0 33.33%, #ffffff 33.33% 66.66%, #1f6b35 66.66% 100%);
+  }
+  .bg-grid-light {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .bg-grid-dark {
+    background-image:
+      linear-gradient(to right, rgb(15 23 42 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(15 23 42 / 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .bg-camo {
+    background-image:
+      radial-gradient(ellipse 18% 12% at 20% 30%, rgb(63 90 42 / 0.35), transparent 70%),
+      radial-gradient(ellipse 14% 10% at 70% 20%, rgb(184 131 90 / 0.25), transparent 70%),
+      radial-gradient(ellipse 20% 14% at 80% 75%, rgb(45 90 39 / 0.35), transparent 70%),
+      radial-gradient(ellipse 16% 12% at 30% 80%, rgb(184 131 90 / 0.2), transparent 70%);
+  }
+  .mask-radial-fade {
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
