@@ -3,7 +3,6 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Modal } from '@/components/common/Modal'
-import { Notice } from '@/components/common/Notice'
 import { IconBadge } from '@/components/common/IconBadge'
 import { openQuickEnquiry } from '@/components/home/QuickEnquiryPopup'
 import { getIcon } from '@/utils/icons'
@@ -53,9 +52,6 @@ export function CourseDetailDialog({ course, open, onOpenChange }) {
             </li>
           ))}
         </ul>
-        <Notice tone="warning" className="mt-3">
-          {t('common.verifyNotice')}
-        </Notice>
       </DetailBlock>
 
       <DetailBlock icon={Route} title={t('coursesPage.selection')}>

@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Notice } from '@/components/common/Notice'
 import { FormField } from './FormField'
 import { COURSES } from '@/data/courses'
 import { BRANCHES } from '@/data/branches'
@@ -66,8 +65,6 @@ export function EnquiryForm() {
 
   return (
     <form ref={formRef} noValidate onSubmit={handleSubmit} className="grid gap-5" aria-labelledby="enquiry-form-title">
-      <Notice tone="warning">{t('contact.demoNotice')}</Notice>
-
       {hasErrors && (
         <p role="alert" className="rounded-lg bg-destructive/10 px-3 py-2 text-sm font-semibold text-destructive">
           {t('contact.errors.summary')}

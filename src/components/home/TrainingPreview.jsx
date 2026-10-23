@@ -42,7 +42,7 @@ export function TrainingPreview() {
         </ul>
         <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
           <Button asChild size="xl">
-            <Link to="/training">
+            <Link to="/academics#training">
               {t('homeTraining.trainingCta')}
               <ArrowRight aria-hidden="true" />
             </Link>

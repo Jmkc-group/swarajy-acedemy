@@ -43,7 +43,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             {COURSES.map((course) => (
               <li key={course.id}>
-                <Link to={`/courses?course=${course.id}`} className="hover:text-gold">{pick(course.title)}</Link>
+                <Link to={`/academics?course=${course.id}#courses`} className="hover:text-gold">{pick(course.title)}</Link>
               </li>
             ))}
           </ul>

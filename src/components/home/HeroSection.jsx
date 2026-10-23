@@ -2,10 +2,9 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, MapPin, Phone, Quote } from 'lucide-react'
 import { motion } from 'motion/react'
 import logoEmblem from '@/assets/logo-emblem.webp'
+import heroBg from '@/assets/hero/women-officers-parade.jpg'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Spotlight } from '@/components/aceternity/Spotlight'
-import { GridBackground } from '@/components/aceternity/GridBackground'
 import { MovingBorder } from '@/components/aceternity/MovingBorder'
 import { TextGenerateEffect } from '@/components/aceternity/TextGenerateEffect'
 import { PHONE_NUMBERS, SLOGANS } from '@/data/site'
@@ -33,10 +32,17 @@ export function HeroSection() {
   const [mainSlogan, ...otherSlogans] = SLOGANS
 
   return (
-    <section className="relative isolate overflow-hidden bg-navy-950 bg-camo" aria-labelledby="hero-heading">
-      <GridBackground />
-      <Spotlight className="-top-40 left-0 md:-top-24 md:left-56" fill="#d4a537" />
-      <div aria-hidden="true" className="absolute -right-32 bottom-0 size-[28rem] rounded-full bg-leaf/25 blur-3xl" />
+    <section className="relative isolate overflow-hidden bg-navy-950" aria-labelledby="hero-heading">
+      {/* Background photo with a dark overlay so text and logo stay readable */}
+      <img
+        src={heroBg}
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        className="absolute inset-0 -z-10 size-full object-cover object-[center_70%]"
+      />
+      {/* Light neutral shade only, so white text stays readable on the bright sky */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black/35" />
 
       <div className="container-page relative z-10 grid items-center gap-10 pt-6 pb-14 sm:pb-20 lg:grid-cols-[1.15fr_0.85fr] lg:pb-24">
         <div className="text-center lg:text-left">
@@ -51,7 +57,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[2rem] leading-tight font-extrabold text-white sm:text-5xl lg:text-[3.4rem]"
+            className="text-[2rem] leading-tight font-extrabold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] sm:text-5xl lg:text-[3.4rem]"
           >
             {t('hero.titleLead')} <span className="text-gradient-gold">{t('hero.titleHighlight')}</span>{' '}
             {t('hero.titleTail')}
@@ -61,7 +67,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mx-auto mt-5 max-w-xl text-base text-white/80 sm:text-lg lg:mx-0"
+            className="mx-auto mt-5 max-w-xl text-base text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)] sm:text-lg lg:mx-0"
           >
             {t('hero.description')}
           </motion.p>

@@ -4,11 +4,12 @@ import { getAccent } from '@/utils/accents'
 import { cn } from '@/lib/utils'
 
 // Reusable card for facilities, training blocks and "why choose us" items.
-export function FeatureCard({ icon, accent = 'forest', title, description, children, headingLevel = 'h3', image, imageAlt, className }) {
+export function FeatureCard({ icon, accent = 'forest', title, description, children, headingLevel = 'h3', image, imageAlt, className, ...props }) {
   const Heading = headingLevel
   const theme = getAccent(accent)
   return (
     <SpotlightCard
+      {...props}
       glow={theme.glow}
       className={cn(
         'flex h-full flex-col rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl',

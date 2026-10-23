@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { SearchX, Trophy } from 'lucide-react'
+import { SearchX } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -9,10 +9,11 @@ import { EmptyState } from '@/components/common/EmptyState'
 import { AchievementCard } from '@/components/common/AchievementCard'
 import { CTASection } from '@/components/common/CTASection'
 import { Reveal } from '@/components/aceternity/Reveal'
-import { ACHIEVEMENTS, ACHIEVEMENT_POSTS, ACHIEVEMENT_YEARS } from '@/data/achievements'
+import { ACHIEVEMENTS, ACHIEVEMENT_POSTS, ACHIEVEMENT_YEARS, ALUMNI } from '@/data/achievements'
 import { useLanguage } from '@/hooks/useLanguage'
 import { cn } from '@/lib/utils'
 
+// "Our Alumni" page (route /alumni).
 export default function AchievementsPage() {
   const { t } = useLanguage()
   const [year, setYear] = useState('all')
@@ -20,16 +21,30 @@ export default function AchievementsPage() {
 
   const filtered = useMemo(
     () =>
-      ACHIEVEMENTS.filter((r) => (year === 'all' || String(r.year) === year) && (post === 'all' || r.post === post)).sort(
+      ALUMNI.filter((r) => (year === 'all' || String(r.year) === year) && (post === 'all' || r.post === post)).sort(
         (a, b) => b.year - a.year,
       ),
     [year, post],
   )
 
+  // Selection counts per post — only from real records, never from samples.
+  const counts = ACHIEVEMENT_POSTS.map((p) => [p, ACHIEVEMENTS.filter((r) => r.post === p).length]).filter(([, n]) => n > 0)
+
   return (
     <>
       <Seo page="achievements" />
-      <PageHero eyebrow={t('achievements.eyebrow')} title={t('achievements.title')} subtitle={t('achievements.subtitle')} />
+      <PageHero eyebrow={t('achievements.eyebrow')} title={t('achievements.title')} subtitle={t('achievements.subtitle')}>
+        {counts.length > 0 && (
+          <ul className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-3">
+            {counts.map(([p, n]) => (
+              <li key={p} className="rounded-xl border border-gold/40 bg-white/5 px-5 py-2.5 text-white">
+                <span className="text-2xl font-extrabold text-gold tabular-nums">{n}</span>{' '}
+                <span className="font-semibold">{t(`achievements.posts.${p}`)}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </PageHero>
 
       <section className="section-y bg-surface" aria-label={t('achievements.title')}>
         <div className="container-page">
@@ -72,12 +87,10 @@ export default function AchievementsPage() {
           </div>
 
           <div className="mt-10" aria-live="polite">
-            {ACHIEVEMENTS.length === 0 ? (
-              <EmptyState icon={Trophy} title={t('achievements.emptyTitle')} description={t('achievements.emptyDesc')} />
-            ) : filtered.length === 0 ? (
+            {filtered.length === 0 ? (
               <EmptyState icon={SearchX} title={t('achievements.noMatchTitle')} description={t('achievements.noMatchDesc')} />
             ) : (
-              <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <ul className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
                 {filtered.map((record, index) => (
                   <Reveal as="li" key={record.id} delay={(index % 4) * 0.05}>
                     <AchievementCard record={record} />

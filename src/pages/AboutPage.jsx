@@ -1,4 +1,17 @@
-import { BookOpen, CircleCheck, Compass, Eye, Flag, Footprints, GraduationCap, HeartHandshake, Target, Users } from 'lucide-react'
+import {
+  BadgeCheck,
+  BookOpen,
+  CircleCheck,
+  Compass,
+  Eye,
+  Flag,
+  Footprints,
+  GraduationCap,
+  HeartHandshake,
+  Presentation,
+  Target,
+  Users,
+} from 'lucide-react'
 import { Seo } from '@/components/common/Seo'
 import { PageHero } from '@/components/common/PageHero'
 import { SectionHeading } from '@/components/common/SectionHeading'
@@ -13,6 +26,7 @@ import { useLanguage } from '@/hooks/useLanguage'
 
 const PHILOSOPHY_ICONS = [Flag, BookOpen, Footprints, HeartHandshake]
 const PHILOSOPHY_ACCENTS = ['forest', 'navy', 'olive', 'saffron']
+const FACULTY_TYPE_ICONS = [BadgeCheck, Presentation]
 
 export default function AboutPage() {
   const { t } = useLanguage()
@@ -22,6 +36,7 @@ export default function AboutPage() {
   const pathway = t('about.pathway')
   const class8 = t('about.class8')
   const faculty = t('about.faculty')
+  const facultyTypes = t('about.facultyTypes')
 
   return (
     <>
@@ -65,6 +80,56 @@ export default function AboutPage() {
               </SpotlightCard>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* Faculty subject categories — no individual names are published */}
+      <section className="section-y bg-white" aria-labelledby="faculty-heading">
+        <div className="container-page">
+          <SectionHeading id="faculty-heading" title={t('about.facultyTitle')} subtitle={t('about.facultySubtitle')} />
+
+          {/* Permanent and guest faculty */}
+          <ul className="mx-auto mt-10 grid max-w-5xl gap-6 md:grid-cols-2">
+            {facultyTypes.map((type, index) => {
+              const Icon = FACULTY_TYPE_ICONS[index]
+              return (
+                <Reveal as="li" key={type.title} delay={index * 0.1}>
+                  <SpotlightCard className="h-full rounded-2xl border border-sand bg-gradient-to-b from-white to-sand-50 p-6 shadow-sm sm:p-8">
+                    <span className="inline-flex size-12 items-center justify-center rounded-xl bg-forest text-gold ring-4 ring-gold/20">
+                      <Icon aria-hidden="true" className="size-6" />
+                    </span>
+                    <h3 className="mt-4 text-xl font-bold text-forest">{type.title}</h3>
+                    <p className="mt-2 text-muted-ink">{type.desc}</p>
+                    <ul className="mt-5 space-y-2.5">
+                      {type.features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-2.5">
+                          <CircleCheck aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-leaf" />
+                          <span className="font-medium">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </SpotlightCard>
+                </Reveal>
+              )
+            })}
+          </ul>
+
+          <h3 className="mt-14 text-center text-xl font-bold">{t('about.facultySubjectsTitle')}</h3>
+          <ul className="mx-auto mt-6 flex max-w-4xl flex-wrap justify-center gap-3">
+            {faculty.map((subject, index) => (
+              <li
+                key={subject}
+                className="inline-flex items-center gap-2 rounded-full border border-sand bg-sand-50 px-4 py-2 font-semibold text-forest"
+              >
+                {index % 2 === 0 ? (
+                  <Users aria-hidden="true" className="size-4 text-khaki-deep" />
+                ) : (
+                  <Compass aria-hidden="true" className="size-4 text-khaki-deep" />
+                )}
+                {subject}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -144,28 +209,6 @@ export default function AboutPage() {
       <div className="bg-white pt-16 sm:pt-20">
         <GuaranteeBanner />
       </div>
-
-      {/* Faculty subject categories — no individual names are published */}
-      <section className="section-y bg-white" aria-labelledby="faculty-heading">
-        <div className="container-page">
-          <SectionHeading id="faculty-heading" title={t('about.facultyTitle')} subtitle={t('about.facultySubtitle')} />
-          <ul className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-3">
-            {faculty.map((subject, index) => (
-              <li
-                key={subject}
-                className="inline-flex items-center gap-2 rounded-full border border-sand bg-sand-50 px-4 py-2 font-semibold text-forest"
-              >
-                {index % 2 === 0 ? (
-                  <Users aria-hidden="true" className="size-4 text-khaki-deep" />
-                ) : (
-                  <Compass aria-hidden="true" className="size-4 text-khaki-deep" />
-                )}
-                {subject}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
 
       <CTASection />
     </>

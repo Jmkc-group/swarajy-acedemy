@@ -1,11 +1,7 @@
 import { CalendarCheck, CalendarDays, Clock } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import { Seo } from '@/components/common/Seo'
-import { PageHero } from '@/components/common/PageHero'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { FeatureCard } from '@/components/common/FeatureCard'
-import { Notice } from '@/components/common/Notice'
-import { CTASection } from '@/components/common/CTASection'
 import { Reveal } from '@/components/aceternity/Reveal'
 import { SpotlightCard } from '@/components/aceternity/SpotlightCard'
 import { TRAINING_GROUPS } from '@/data/training'
@@ -21,18 +17,21 @@ const TYPE_STYLE = {
   break: 'bg-sand-50 text-khaki-deep',
 }
 
-export default function TrainingPage() {
+// Training programme, test pattern and daily schedule — the second half of the Academics page.
+export function TrainingSections() {
   const { t, pick } = useLanguage()
   const tests = t('training.tests')
 
   return (
     <>
-      <Seo page="training" />
-      <PageHero eyebrow={t('training.eyebrow')} title={t('training.title')} subtitle={t('training.subtitle')} />
-
-      <section className="section-y bg-white" aria-labelledby="program-heading">
+      <section id="training" className="section-y scroll-mt-28 bg-white" aria-labelledby="program-heading">
         <div className="container-page">
-          <SectionHeading id="program-heading" title={t('training.programTitle')} subtitle={t('training.programSubtitle')} />
+          <SectionHeading
+            id="program-heading"
+            eyebrow={t('nav.training')}
+            title={t('training.programTitle')}
+            subtitle={t('training.programSubtitle')}
+          />
           <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {TRAINING_GROUPS.map((group, index) => (
               <Reveal as="li" key={group.id} delay={(index % 3) * 0.07}>
@@ -113,11 +112,8 @@ export default function TrainingPage() {
               </tbody>
             </table>
           </div>
-          <Notice className="mx-auto mt-5 max-w-4xl">{t('training.scheduleNote')}</Notice>
         </div>
       </section>
-
-      <CTASection />
     </>
   )
 }

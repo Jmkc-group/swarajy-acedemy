@@ -6,7 +6,6 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { SectionHeading } from '@/components/common/SectionHeading'
-import { Notice } from '@/components/common/Notice'
 import { CATEGORIES, ELIGIBILITY_RULES, checkEligibility } from '@/data/eligibility'
 import { isValidAge } from '@/utils/validation'
 import { useLanguage } from '@/hooks/useLanguage'
@@ -225,7 +224,6 @@ export function EligibilityChecker() {
                 <p className="mt-3 font-semibold text-muted-ink">{t('eligibility.subtitle')}</p>
               </div>
             )}
-            <Notice tone="warning">{t('eligibility.disclaimer')}</Notice>
           </div>
         </div>
       </div>

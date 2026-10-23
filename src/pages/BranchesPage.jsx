@@ -3,7 +3,6 @@ import { Seo } from '@/components/common/Seo'
 import { PageHero } from '@/components/common/PageHero'
 import { BranchCard } from '@/components/common/BranchCard'
 import { PhoneList } from '@/components/common/PhoneList'
-import { Notice } from '@/components/common/Notice'
 import { CTASection } from '@/components/common/CTASection'
 import { Reveal } from '@/components/aceternity/Reveal'
 import { BRANCHES } from '@/data/branches'
@@ -25,8 +24,6 @@ export default function BranchesPage() {
               </Reveal>
             ))}
           </ul>
-
-          <Notice className="mx-auto mt-6 max-w-5xl">{t('branches.mapNote')}</Notice>
 
           <div className="mx-auto mt-10 max-w-5xl rounded-2xl border bg-white p-6 shadow-sm sm:p-8">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">

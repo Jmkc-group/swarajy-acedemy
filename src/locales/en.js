@@ -35,13 +35,21 @@ const en = {
   nav: {
     home: 'Home',
     about: 'About Us',
+    academics: 'Academics',
     courses: 'Courses',
     training: 'Training & Tests',
     facilities: 'Facilities',
-    achievements: 'Achievements',
+    alumni: 'Our Alumni',
     branches: 'Branches',
     contact: 'Contact',
     mainLabel: 'Main navigation',
+  },
+
+  academicsPage: {
+    eyebrow: 'Academics',
+    title: 'Courses, Training & Tests',
+    subtitle: 'Every course we offer, the daily training programme and the regular test pattern — all in one place.',
+    jumpLabel: 'Jump to section',
   },
 
   langModal: {
@@ -110,10 +118,10 @@ const en = {
   },
 
   homeAchievements: {
-    eyebrow: 'Achievements',
-    title: 'Success stories',
-    subtitle: 'We publish only verified selection records supplied by the academy.',
-    cta: 'Visit success gallery',
+    eyebrow: 'Our Alumni',
+    title: 'Proudly serving the nation',
+    subtitle: 'Our students now in the Army, Police, Navy, Air Force and government service.',
+    cta: 'Meet all our alumni',
   },
 
   homeBranches: {
@@ -220,6 +228,31 @@ const en = {
     ],
     facultyTitle: 'Faculty subject areas',
     facultySubtitle: 'Subject-wise teaching across the academy’s programmes.',
+    facultyTypes: [
+      {
+        title: 'Permanent faculty',
+        desc: 'Full-time teachers who stay with the students through the entire course.',
+        features: [
+          'Daily classroom teaching as per a fixed timetable',
+          'Personal attention and doubt solving for every student',
+          'Conduct weekly tests and monthly unit tests',
+          'Track each student’s progress and guide parents',
+          'Available on campus for residential students',
+        ],
+      },
+      {
+        title: 'Guest faculty',
+        desc: 'Visiting experts who bring real-world experience into the classroom.',
+        features: [
+          'Special sessions by subject experts and professionals',
+          'Guidance from people with recruitment and service backgrounds',
+          'Seminars on exam strategy and time management',
+          'Mock interviews and personality development workshops',
+          'Motivational talks to keep students focused on their goal',
+        ],
+      },
+    ],
+    facultySubjectsTitle: 'Subjects we teach',
     faculty: [
       'General Knowledge & Current Affairs',
       'Mathematics & Arithmetic',
@@ -283,12 +316,24 @@ const en = {
     residential: { title: 'Residential', desc: 'Hostel stay with mess, the full daily routine and 24-hour library access.' },
     nonResidential: { title: 'Non-residential', desc: 'Attend classes and training as a day scholar and return home daily.' },
     modesNote: 'Contact the academy for fees, availability and current arrangements.',
+    gallery: {
+      viewPhotos: 'View photos',
+      photoCount: '{count} photos',
+      emptyTitle: 'Photos coming soon',
+      emptyDesc: 'Real photographs of this facility will appear here once the academy shares them.',
+      enlarge: 'View larger: {name}',
+      prev: 'Previous photo',
+      next: 'Next photo',
+      counter: '{current} / {total}',
+    },
   },
 
   achievements: {
-    eyebrow: 'Achievements',
-    title: 'Achievements & Success Gallery',
-    subtitle: 'Verified selections of our students — filtered by year and post.',
+    eyebrow: 'Our Alumni',
+    title: 'Our Alumni',
+    subtitle: 'Students of the academy now serving in the Army, Police, Navy, Air Force and government posts — by year and post.',
+    sampleName: 'Alumni name',
+    sampleBadge: 'Sample',
     filterYear: 'Year',
     filterPost: 'Post',
     allYears: 'All years',
@@ -416,6 +461,11 @@ const en = {
       title: 'About Us | Swarajya Career Academy & Sainik School',
       description: 'Mission, vision, teaching philosophy and the Class 8 onwards preparation pathway of Swarajya Career Academy.',
     },
+    academics: {
+      title: 'Academics — Courses, Training & Tests | Swarajya Career Academy',
+      description:
+        'Police Bharti, Army, Navy, Air Force, Saralseva Bharti and MPSC courses, daily study and physical training, weekly Tuesday tests and monthly unit tests.',
+    },
     courses: {
       title: 'Courses & Syllabus | Swarajya Career Academy',
       description: 'Police Bharti, Indian Army, Navy, Air Force, Saralseva Bharti, MPSC foundation and Class 8 pathway — syllabus and selection process.',
@@ -429,8 +479,8 @@ const en = {
       description: '14,000 sq. ft. campus, 24-hour library, residential hostel, mess, online and recorded lectures.',
     },
     achievements: {
-      title: 'Achievements & Success Gallery | Swarajya Career Academy',
-      description: 'Verified selections of Swarajya Career Academy students, filterable by year and post.',
+      title: 'Our Alumni | Swarajya Career Academy',
+      description: 'Swarajya Career Academy alumni selected in the Army, Police, Navy, Air Force and government posts, by year and post.',
     },
     branches: {
       title: 'Branches | Swarajya Career Academy',

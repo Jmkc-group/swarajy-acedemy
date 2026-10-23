@@ -83,7 +83,7 @@ export function Header() {
           <div className="flex shrink-0 items-center gap-2">
             <LanguageSelector className="hidden sm:inline-flex" />
             <LanguageSelector className="sm:hidden" showLabel={false} />
-            {/* hidden at xl where the 8 nav links need the room; back at 2xl */}
+            {/* hidden at xl where the 7 nav links need the room; back at 2xl */}
             <Button asChild variant="cta" className="hidden h-10 lg:inline-flex xl:hidden 2xl:inline-flex">
               <Link to="/contact">{t('common.admissionEnquiry')}</Link>
             </Button>

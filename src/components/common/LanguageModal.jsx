@@ -5,8 +5,8 @@ import { useLanguage } from '@/hooks/useLanguage'
 import { dictionaries } from '@/locales'
 import { SITE } from '@/data/site'
 
-// First-visit language picker. It cannot be dismissed without choosing, and it
-// is shown only while there is no valid saved preference in localStorage.
+// Language picker shown every time the website is opened (once per browser tab
+// session). It cannot be dismissed without choosing.
 // Title/description appear in all three languages since none is chosen yet.
 export function LanguageModal() {
   const { needsSelection, languages, setLanguage } = useLanguage()

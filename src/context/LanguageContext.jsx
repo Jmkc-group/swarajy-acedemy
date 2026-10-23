@@ -3,6 +3,9 @@ import { LanguageContext } from './language-context'
 import { DEFAULT_LANGUAGE, LANGUAGES, SUPPORTED_LANGUAGES, dictionaries } from '@/locales'
 
 const STORAGE_KEY = 'sca-language'
+// Set once the visitor picks a language in this visit (browser tab session),
+// so the selection modal shows again every time the website is opened anew.
+const SESSION_KEY = 'sca-language-chosen'
 
 function readStoredLanguage() {
   try {
@@ -13,13 +16,23 @@ function readStoredLanguage() {
   }
 }
 
+function readChosenThisVisit() {
+  try {
+    return window.sessionStorage.getItem(SESSION_KEY) === '1'
+  } catch {
+    return false
+  }
+}
+
 function lookup(dict, key) {
   return key.split('.').reduce((node, part) => (node == null ? undefined : node[part]), dict)
 }
 
 export function LanguageProvider({ children }) {
-  // null => no valid saved preference yet, so the selection modal is shown
+  // Last saved preference (kept across visits) — used as the current language
   const [stored, setStored] = useState(readStoredLanguage)
+  // false => not picked yet in this visit, so the selection modal is shown
+  const [chosen, setChosen] = useState(readChosenThisVisit)
   const lang = stored ?? DEFAULT_LANGUAGE
 
   useEffect(() => {
@@ -29,8 +42,10 @@ export function LanguageProvider({ children }) {
   const setLanguage = useCallback((next) => {
     if (!SUPPORTED_LANGUAGES.includes(next)) return
     setStored(next)
+    setChosen(true)
     try {
       window.localStorage.setItem(STORAGE_KEY, next)
+      window.sessionStorage.setItem(SESSION_KEY, '1')
     } catch {
       // storage blocked (private mode) — preference lasts for this session only
     }
@@ -60,12 +75,12 @@ export function LanguageProvider({ children }) {
     return {
       lang,
       languages: LANGUAGES,
-      needsSelection: stored === null,
+      needsSelection: !chosen,
       setLanguage,
       t,
       pick,
     }
-  }, [lang, stored, setLanguage])
+  }, [lang, chosen, setLanguage])
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
 }

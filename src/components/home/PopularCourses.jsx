@@ -32,7 +32,7 @@ export function PopularCourses() {
         </ul>
         <div className="mt-10 text-center">
           <Button asChild variant="outline" size="xl" className="border-forest/30 text-forest hover:border-gold">
-            <Link to="/courses">
+            <Link to="/academics#courses">
               {t('common.viewAll')}
               <ArrowRight aria-hidden="true" />
             </Link>
