@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Dialog as DialogPrimitive } from 'radix-ui'
 import { ChevronLeft, ChevronRight, ImageOff, X } from 'lucide-react'
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet'
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { IconBadge } from '@/components/common/IconBadge'
 import { EmptyState } from '@/components/common/EmptyState'
 import { getFacilityPhotos } from '@/data/facilityPhotos'
@@ -25,12 +25,19 @@ export function FacilityGallery({ facility, open, onOpenChange }) {
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side="left"
-        closeLabel={t('common.close')}
+        showCloseButton={false}
         className="w-full gap-0 overflow-y-auto p-0 sm:w-1/2 sm:max-w-none"
       >
         {facility && (
           <>
-            <SheetHeader className="sticky top-0 z-10 gap-3 border-b bg-white/95 p-5 pr-12 backdrop-blur-md sm:p-6 sm:pr-14">
+            <SheetHeader className="sticky top-0 z-10 gap-3 border-b bg-white/95 p-5 pr-16 backdrop-blur-md sm:p-6 sm:pr-20">
+              {/* Lives in the sticky header so it stays reachable while the photos scroll */}
+              <SheetClose
+                aria-label={t('common.close')}
+                className="absolute top-4 right-4 inline-flex size-10 items-center justify-center rounded-full bg-sand-50 text-ink transition-colors hover:bg-forest hover:text-white focus-visible:ring-2 focus-visible:ring-forest focus-visible:outline-none sm:top-5 sm:right-5"
+              >
+                <X aria-hidden="true" className="size-5" />
+              </SheetClose>
               <div className="flex items-center gap-3">
                 <IconBadge icon={getIcon(facility.icon)} accent={facility.accent} />
                 <div className="min-w-0">
