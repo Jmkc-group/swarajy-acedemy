@@ -74,6 +74,12 @@ export function Footer() {
             © {YEAR} {pick(SITE.name)}. {t('footer.rights')}
           </p>
           <p className="max-w-2xl md:text-right">{t('footer.disclaimer')}</p>
+          <Link
+            to="/portal"
+            className="w-fit rounded-md border border-gold/60 px-3 py-1.5 font-semibold text-gold hover:bg-gold hover:text-navy-950"
+          >
+            Admin Dashboard
+          </Link>
         </div>
       </div>
     </footer>
