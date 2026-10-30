@@ -113,3 +113,19 @@ src/
 - **Netlify:** add `public/_redirects` with `/* /index.html 200`
 - **Vercel:** add a rewrite of `/(.*)` to `/index.html`
 - **Apache / Nginx:** fall back to `index.html` (`try_files $uri /index.html;`)
+
+## Admin dashboard & student portal
+
+A Node + SQLite backend lives in `server/`; the React app talks to it under `/api`.
+
+```bash
+npm run dev      # website (vite) + API (node --watch) together
+npm run build && npm start   # production: one process serves the site + API on :4000
+```
+
+- First run creates the admin account and prints the password in the terminal
+  (or set `ADMIN_PASSWORD` before the first start). Login at `/portal` with ID `admin`.
+- Data (database, signing secret, uploaded notes) is stored in `server/data/` — back this folder up. It is git-ignored.
+- Set `JWT_SECRET` and `PORT` env vars in production if needed. Requires Node 22+ (uses the built-in `node:sqlite`).
+- Admin: `/admin` — students, attendance, fees, notes, question bank, tests, announcements, courses.
+- Student: `/student` — notes, practice MCQs, timed tests, results, attendance, fees.

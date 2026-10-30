@@ -6,6 +6,7 @@ import { LanguageProvider } from '@/context/LanguageContext'
 import { Layout } from '@/components/layout/Layout'
 import { LanguageModal } from '@/components/common/LanguageModal'
 import { Toast } from '@/components/common/Toast'
+import { portalRoutes } from '@/portal/routes'
 
 // Route-level code splitting keeps the first load small.
 const HomePage = lazy(() => import('@/pages/HomePage'))
@@ -29,6 +30,7 @@ export default function App() {
       <MotionConfig reducedMotion="user">
         <TooltipProvider delayDuration={200}>
           <Routes>
+            {portalRoutes}
             <Route element={<Layout />}>
               <Route index element={<HomePage />} />
               <Route path="about" element={<AboutPage />} />
